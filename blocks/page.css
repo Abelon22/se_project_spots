@@ -3,10 +3,15 @@
 
   --color-background: #fcf5e5;
 
-  --color-cards-background: #212121;
+  --color-button-text: #212121;
+}
+
+html {
+  font-size: 16px;
 }
 
 .page {
   background-color: var(--color-background);
   font-family: "Poppins", Arial, Helvetica, sans-serif;
+  width: 100%;
 }

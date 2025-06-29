@@ -1,0 +1,13 @@
+.menubar {
+  background-color: var(--color-primary-white);
+  height: 46px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menubar__logo {
+  height: auto;
+  max-height: 100%;
+}

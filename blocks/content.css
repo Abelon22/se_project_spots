@@ -1,0 +1,13 @@
+:root {
+  --color-primary-white: #ffffff;
+
+  --color-background: #fcf5e5;
+
+  --color-cards-background: #212121;
+}
+
+.content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

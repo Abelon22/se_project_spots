@@ -18,7 +18,40 @@
   </head>
   <body>
     <div class="page">
-      <header class="header">Test Text</header>
+      <nav class="menubar">
+        <img src="images/logo.svg" alt="Spots" class="menubar__logo" />
+      </nav>
+      <header class="header">
+        <div class="header__container">
+          <div class="header__avatar-section header__profile">
+            <img
+              class="header__avatar-image"
+              src="images/avatar.jpg"
+              alt="Profile Image"
+            />
+            <div class="header__profile-info">
+              <h2 class="header__profile-name">Bessie Coleman</h2>
+              <p class="header__profile-title">Civil Aviator</p>
+              <button class="header__edit-button">
+                <img
+                  src="images/pencil.svg"
+                  alt="Edit Profile"
+                  class="header__edit-icon"
+                />
+                Edit Profile
+              </button>
+            </div>
+          </div>
+          <button class="header__new-post-button">
+            <img
+              src="images/plus.svg"
+              alt="New Post Icon"
+              class="header__plus-icon"
+            />
+            New Post
+          </button>
+        </div>
+      </header>
       <main class="content">
         <section class="profile"></section>
         <section class="cards"></section>
