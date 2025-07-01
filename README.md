@@ -31,11 +31,6 @@ Spots is a responsive web project designed to help users discover, save, and sha
 
 ## Screenshots
 
-Below are some screenshots showing the main features and responsive states of the project:
-
-### Desktop Layout
-
-![Desktop Screenshot](images/readme/screenshot_desktop.png)
 
 ### Two Column Layout
 
@@ -44,18 +39,6 @@ Below are some screenshots showing the main features and responsive states of th
 ### One Column (Mobile) Layout
 
 ![One Column Screenshot](images/readme/screenshot_one_column.png)
-
-### Brief Overview
-
-![Brief Screenshot](images/readme/screenshot_brief.png)
-
-### Figma Design Reference
-
-![Figma Screenshot](images/readme/screenshot_figma.png)
-
-### Figma States
-
-![Figma States Screenshot](images/readme/screenshot_figma_states.png)
 
 
 ## Figma Design
