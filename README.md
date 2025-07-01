@@ -57,13 +57,6 @@ Below are some screenshots showing the main features and responsive states of th
 
 ![Figma States Screenshot](images/readme/screenshot_figma_states.png)
 
-## Responsive Demo Video
-
-https://user-images.githubusercontent.com/your-username/your-repo/main/images/readme/spots_responsive_video.mp4
-
-Or view below (if supported):
-
-<video src="images/readme/spots_responsive_video.mp4" controls width="600"></video>
 
 ## Figma Design
 
