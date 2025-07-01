@@ -5,3 +5,41 @@
 
   --color-cards-background: #212121;
 }
+
+.footer {
+  width: 100%;
+  height: 8.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+.footer__text {
+  margin: 0;
+
+  height: 1rem;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  color: var(--color-cards-background);
+}
+
+@media screen and (max-width: 630px) {
+  .footer {
+    min-width: 18rem;
+    min-height: 5rem;
+    height: auto;
+    padding: 1.25rem;
+  }
+
+  .footer__text {
+    font-size: 0.875rem;
+    height: auto;
+    max-width: 18rem;
+    margin: 0 auto;
+  }
+}

@@ -6,12 +6,20 @@
   --color-button-text: #212121;
 }
 
-html {
-  font-size: 16px;
+* {
+  box-sizing: border-box;
 }
 
 .page {
   background-color: var(--color-background);
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.page * {
+  max-width: 100%;
 }

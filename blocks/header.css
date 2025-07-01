@@ -1,112 +1,34 @@
 :root {
   --color-primary-white: #ffffff;
-
   --color-background: #fcf5e5;
-
   --color-button-text: #212121;
 }
 
 .header {
+  background-color: var(--color-primary-white);
+  height: 2.875rem;
   width: 100%;
-  background-color: var(--color-background);
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
-}
-
-.header__container {
-  width: 1280px;
-  min-height: 210px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-top: 34px;
-  padding-bottom: 20px;
-
+  align-items: center;
+  padding: 0 1.25rem;
   box-sizing: border-box;
 }
 
-.header__avatar-section {
-  display: flex;
-
-  width: 505px;
-  height: 190px;
+.header__logo {
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
 }
 
-.header__avatar-image {
-  width: 190px;
-  height: 190px;
+@media screen and (max-width: 630px) {
+  .header {
+    height: 2.875rem;
+    padding: 0 1.25rem;
+  }
 
-  object-fit: cover;
-}
-
-.header__profile-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-left: 20px;
-  flex: 1;
-}
-
-.header__profile-name {
-  margin: 0;
-  font-size: 32px;
-  line-height: 1;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  width: 420px;
-  height: 32px;
-  text-align: left;
-  color: var(--color-button-text);
-}
-
-.header__profile-title {
-  margin: 5px 0;
-  font-size: 16px;
-  line-height: 1;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  width: 97px;
-  height: 16px;
-  text-align: left;
-  color: rgba(33, 33, 33, 0.7);
-}
-
-.header__edit-button {
-  margin-top: auto;
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-button-text);
-  font-size: 16px;
-}
-
-.header__edit-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--color-button-text);
-  margin-right: 5px;
-}
-
-.header__new-post-button {
-  padding: 10px 15px;
-  background-color: #1878dc;
-  color: var(--color-background);
-  background-color: var(--color-button-text);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  align-self: flex-end;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.header__plus-icon {
-  color: var(--color-background);
-  width: 16px;
-  height: 16px;
+  .header__logo {
+    max-height: 1.625rem;
+    max-width: 6rem;
+  }
 }

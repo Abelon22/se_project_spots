@@ -1,1 +1,227 @@
+:root {
+  --color-primary-white: #ffffff;
 
+  --color-background: #fcf5e5;
+
+  --color-button-text: #212121;
+}
+
+.profile {
+  width: 100%;
+  background-color: var(--color-background);
+  display: flex;
+  padding-top: 1.25rem;
+  justify-content: center;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+}
+
+.profile__container {
+  width: 100%;
+  max-width: 80rem;
+  min-height: 13.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 2.5rem;
+  box-sizing: border-box;
+}
+
+.profile__avatar-section {
+  display: flex;
+  max-width: 31.5625rem;
+  height: 11.875rem;
+}
+
+.profile__avatar-image {
+  width: 11.875rem;
+  height: 11.875rem;
+  object-fit: cover;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 1.25rem;
+  flex: 1;
+}
+
+.profile__name {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  max-width: 26.25rem;
+  height: 2rem;
+  text-align: left;
+  color: var(--color-button-text);
+
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.profile__title {
+  margin: 0.3125rem 0;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  width: 6.0625rem;
+  height: 1rem;
+  text-align: left;
+  color: rgba(33, 33, 33, 0.7);
+}
+
+.profile__name,
+.profile__title {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.profile__edit-button {
+  margin-top: auto;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  opacity: 0.7;
+
+  color: var(--color-button-text);
+
+  transition: opacity 0.3s ease;
+}
+
+.profile__edit-button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.profile__edit-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--color-button-text);
+  margin-right: 0.3125rem;
+}
+
+.profile__new-post-button {
+  padding: 0.625rem 0.9375rem;
+  background-color: var(--color-button-text);
+  color: var(--color-background);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.profile__new-post-button:hover {
+  opacity: 0.7;
+}
+
+.profile__plus-icon {
+  color: var(--color-background);
+  width: 0.625rem;
+  height: 0.625rem;
+  align-self: center;
+}
+
+@media screen and (max-width: 1320px) and (min-width: 631px) {
+  .profile__container {
+    width: 100%;
+    padding-bottom: 1.25rem;
+  }
+
+  .profile__avatar-section {
+    max-width: 28rem;
+  }
+
+  .profile__name {
+    font-size: 1.75rem;
+    max-width: 22rem;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .profile__container {
+    flex-direction: column;
+    align-items: center;
+    min-width: 18rem;
+    text-align: center;
+    min-height: auto;
+    padding-bottom: 1rem;
+    gap: 1.25rem;
+  }
+
+  .profile__avatar-section {
+    flex-direction: column;
+    align-items: center;
+    max-width: none;
+    height: auto;
+    width: 100%;
+  }
+
+  .profile__avatar-image {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .profile__info {
+    margin-left: 0;
+    margin-top: 0.625rem;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 16rem;
+    width: 100%;
+  }
+
+  .profile__name {
+    font-size: 1.25rem;
+    text-align: center;
+    height: auto;
+    flex-shrink: 2;
+    line-height: 1.2;
+    max-width: 18rem;
+  }
+
+  .profile__title {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    flex-shrink: 2;
+    max-width: 18rem;
+    width: auto;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
+  .profile__edit-button {
+    margin-top: 0;
+    align-self: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 16rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .profile__new-post-button {
+    width: 100%;
+    max-width: 18rem;
+    align-self: center;
+    flex-shrink: 0;
+    justify-content: center;
+  }
+}

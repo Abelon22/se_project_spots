@@ -18,45 +18,118 @@
   </head>
   <body>
     <div class="page">
-      <nav class="menubar">
-        <img src="images/logo.svg" alt="Spots" class="menubar__logo" />
-      </nav>
       <header class="header">
-        <div class="header__container">
-          <div class="header__avatar-section header__profile">
-            <img
-              class="header__avatar-image"
-              src="images/avatar.jpg"
-              alt="Profile Image"
-            />
-            <div class="header__profile-info">
-              <h2 class="header__profile-name">Bessie Coleman</h2>
-              <p class="header__profile-title">Civil Aviator</p>
-              <button class="header__edit-button">
-                <img
-                  src="images/pencil.svg"
-                  alt="Edit Profile"
-                  class="header__edit-icon"
-                />
-                Edit Profile
-              </button>
-            </div>
-          </div>
-          <button class="header__new-post-button">
-            <img
-              src="images/plus.svg"
-              alt="New Post Icon"
-              class="header__plus-icon"
-            />
-            New Post
-          </button>
-        </div>
+        <img src="images/logo.svg" alt="Spots" class="header__logo" />
       </header>
       <main class="content">
-        <section class="profile"></section>
-        <section class="cards"></section>
+        <section class="profile">
+          <div class="profile__container">
+            <div class="profile__avatar-section">
+              <img
+                class="profile__avatar-image"
+                src="images/avatar.jpg"
+                alt="Profile Image"
+              />
+              <div class="profile__info">
+                <h2 class="profile__name">Bessie Coleman</h2>
+                <p class="profile__title">Civil Aviator</p>
+                <button class="profile__edit-button">
+                  <img
+                    src="images/pencil.svg"
+                    alt="Edit Profile"
+                    class="profile__edit-icon"
+                  />
+                  Edit Profile
+                </button>
+              </div>
+            </div>
+            <button class="profile__new-post-button">
+              <img
+                src="images/plus.svg"
+                alt="New Post Icon"
+                class="profile__plus-icon"
+              />
+              New Post
+            </button>
+          </div>
+        </section>
+        <section class="cards">
+          <div class="cards__container">
+            <article class="cards__item">
+              <img
+                src="images/1-photo-by-moritz-feldmann-from-pexels.jpg"
+                alt="Val Thorens"
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h3 class="cards__name">Val Thorens</h3>
+                <img src="images/heart.svg" alt="Like" class="cards__heart" />
+              </div>
+            </article>
+            <article class="cards__item">
+              <img
+                src="images/2-photo-by-ceiline-from-pexels.jpg"
+                alt="Restaurant Yak & Yeti"
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h3 class="cards__name">Restaurant terrace</h3>
+                <img src="images/heart.svg" alt="Like" class="cards__heart" />
+              </div>
+            </article>
+            <article class="cards__item">
+              <img
+                src="images/3-photo-by-tubanur-dogan-from-pexels.jpg"
+                alt="Bedtime at the Ramada Inn"
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h3 class="cards__name">An outdoor cafe</h3>
+                <img src="images/heart.svg" alt="Like" class="cards__heart" />
+              </div>
+            </article>
+            <article class="cards__item">
+              <img
+                src="images/4-photo-by-maurice-laschet-from-pexels.jpg"
+                alt="Cozy Cabin"
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h3 class="cards__name">
+                  A very long bridge, over the forest overlooking a river down
+                  below
+                </h3>
+                <img src="images/heart.svg" alt="Like" class="cards__heart" />
+              </div>
+            </article>
+            <article class="cards__item">
+              <img
+                src="images/5-photo-by-van-anh-nguyen-from-pexels.jpg"
+                alt="Desert Oasis"
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h3 class="cards__name">Tunnel with morning light</h3>
+                <img src="images/heart.svg" alt="Like" class="cards__heart" />
+              </div>
+            </article>
+            <article class="cards__item">
+              <img
+                src="images/6-photo-by-moritz-feldmann-from-pexels.jpg"
+                alt="Mountain Paradise"
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h3 class="cards__name">Mountain house</h3>
+                <img src="images/heart.svg" alt="Like" class="cards__heart" />
+              </div>
+            </article>
+          </div>
+        </section>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer">
+        <p class="footer__text">© 2023 John Overton Spots</p>
+      </footer>
     </div>
   </body>
 </html>

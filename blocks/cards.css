@@ -5,3 +5,118 @@
 
   --color-cards-background: #212121;
 }
+
+.cards {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+}
+
+.cards__container {
+  width: 100%;
+  max-width: 80rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 413px));
+  grid-auto-rows: auto;
+  gap: 2.5rem 1.25rem;
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+.cards__item {
+  width: 100%;
+  max-width: 25.8125rem;
+  height: auto;
+  justify-self: center;
+}
+
+.cards__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.cards__image:hover {
+  transform: scale(1.02);
+}
+
+.cards__info {
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.cards__name {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color: var(--color-cards-background);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 2rem);
+}
+
+.cards__heart {
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0.4;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cards__heart:hover {
+  opacity: 1;
+
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1320px) and (min-width: 631px) {
+  .cards__container {
+    grid-template-columns: repeat(2, minmax(0, 413px));
+    grid-auto-rows: auto;
+    justify-content: center;
+    gap: 2.5rem 1.25rem;
+    max-width: 60rem;
+  }
+
+  .cards__item {
+    max-width: 25.8125rem;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .cards__container {
+    grid-template-columns: minmax(0, 288px);
+    grid-auto-rows: auto;
+    gap: 1.25rem;
+    padding: 0 1.25rem;
+  }
+
+  .cards__item {
+    width: 100%;
+    max-width: 18rem;
+    height: auto;
+    justify-self: center;
+  }
+
+  .cards__image {
+    max-width: 18rem;
+  }
+
+  .cards__name {
+    font-size: 1.125rem;
+  }
+}
