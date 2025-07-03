@@ -18,9 +18,12 @@
   width: 100%;
   max-width: 80rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 413px));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-row-gap: 2.5rem;
+  grid-column-gap: 1.25rem;
+
   grid-auto-rows: auto;
-  gap: 2.5rem 1.25rem;
+
   justify-content: center;
 
   box-sizing: border-box;
@@ -85,7 +88,6 @@
 
 @media screen and (max-width: 1320px) and (min-width: 631px) {
   .cards__container {
-    grid-template-columns: repeat(2, minmax(0, 413px));
     grid-auto-rows: auto;
     justify-content: center;
     gap: 2.5rem 1.25rem;
@@ -98,8 +100,11 @@
 }
 
 @media screen and (max-width: 630px) {
+  .cards {
+    padding: 1.25rem 0;
+  }
+
   .cards__container {
-    grid-template-columns: minmax(0, 288px);
     grid-auto-rows: auto;
     gap: 1.25rem;
     padding: 0 1.25rem;
