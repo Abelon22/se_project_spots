@@ -29,6 +29,42 @@ Spots is a responsive web project designed to help users discover, save, and sha
 - I have a new found enjoyment for responsive web design and utilzing modern css properties like grid and flexbox. It was fulfilling to drag the screen to and fro, changing the screen sizes and seeing the elements sizes and styles change fluidly. This is great web development foundation and I am thankful to Triple Ten for providing a professional workflow. Figma
   --> Property Extraction --> Code.
 
+## Screenshots
+
+Below are some screenshots showing the main features and responsive states of the project:
+
+### Desktop Layout
+
+![Desktop Screenshot](images/readme/screenshot_desktop.png)
+
+### Two Column Layout
+
+![Two Column Screenshot](images/readme/screenshot_two_column.png)
+
+### One Column (Mobile) Layout
+
+![One Column Screenshot](images/readme/screenshot_one_column.png)
+
+### Brief Overview
+
+![Brief Screenshot](images/readme/screenshot_brief.png)
+
+### Figma Design Reference
+
+![Figma Screenshot](images/readme/screenshot_figma.png)
+
+### Figma States
+
+![Figma States Screenshot](images/readme/screenshot_figma_states.png)
+
+## Responsive Demo Video
+
+https://user-images.githubusercontent.com/your-username/your-repo/main/images/readme/spots_responsive_video.mp4
+
+Or view below (if supported):
+
+<video src="images/readme/spots_responsive_video.mp4" controls width="600"></video>
+
 ## Figma Design
 
 - [View the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
