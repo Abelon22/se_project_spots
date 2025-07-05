@@ -28,7 +28,7 @@
 
 .profile__avatar-section {
   display: flex;
-  max-width: 31.5625rem;
+
   height: 11.875rem;
 }
 
@@ -41,6 +41,7 @@
 .profile__info {
   display: flex;
   flex-direction: column;
+  max-width: 420px;
   justify-content: flex-start;
   margin-left: 1.25rem;
   flex: 1;
@@ -51,7 +52,7 @@
   font-size: 2rem;
   line-height: 1;
   font-weight: 500;
-  max-width: 26.25rem;
+  max-width: 420px;
   text-align: left;
   color: var(--color-button-text);
 
@@ -68,7 +69,7 @@
   line-height: 1;
 
   font-weight: 500;
-  width: 6.0625rem;
+  max-width: 420px;
   text-align: left;
   color: rgba(33, 33, 33, 0.7);
 }
