@@ -118,7 +118,7 @@
   box-shadow: 0 0 0 2px rgba(33, 33, 33, 0.1);
 }
 
-.modal_input:placeholder {
+.modal__input:placeholder {
   color: rgba(33, 33, 33, 0.3);
 }
 
