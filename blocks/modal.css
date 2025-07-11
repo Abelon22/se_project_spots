@@ -1,5 +1,5 @@
 :root {
-  --modal-background-color: rgba(255, 255, 255, 1);
+  --modal-container-background-color: rgba(255, 255, 255, 1);
 }
 
 .modal {
@@ -23,7 +23,7 @@
 
 .modal__container {
   position: relative;
-  background-color: var(--modal-background-color);
+  background-color: var(--modal-container-background-color);
   width: 90vw;
   max-width: 45.625rem;
   min-width: 18rem;
@@ -44,7 +44,7 @@
   align-items: center;
   width: 100%;
   max-width: 39.375rem;
-  height: 2.5rem;
+  min-height: 2.5rem;
   margin: 0 auto;
 }
 
@@ -101,13 +101,13 @@
   font-size: 1rem;
   line-height: 1.1;
   color: rgba(33, 33, 33, 0.7);
-  height: 1.125rem;
+  min-height: 1.125rem;
 }
 
 .modal__input {
   width: 100%;
   min-width: 0;
-  height: 3.25rem;
+  min-height: 3.25rem;
   border: 1px solid rgba(33, 33, 33, 0.4);
   border-radius: 0.25rem;
   padding: 0 1rem;
@@ -148,8 +148,8 @@
 }
 
 .modal__save-button {
-  width: 9.75rem;
-  height: 3.25rem;
+  min-width: 9.75rem;
+  min-height: 3.25rem;
   background-color: #212121;
   color: #fcf5e5;
   border: none;
@@ -159,7 +159,11 @@
 
   font-weight: 500;
   font-size: 1rem;
+}
+
+.modal__save-button:hover {
   cursor: pointer;
+  background-color: rgba(33, 33, 33, 0.7);
 }
 
 @media screen and (max-width: 630px) {
@@ -192,24 +196,23 @@
 
   .modal__label {
     width: auto;
-    height: 1.125rem;
+    min-height: 1.125rem;
     font-size: 1rem;
     line-height: 1.1;
   }
 
   .modal__input {
     width: 100%;
-    height: 3.25rem;
+    min-height: 3.25rem;
   }
 
   .modal__actions {
     width: 100%;
     max-width: 15.75rem;
-    padding-bottom: 0;
   }
 
   .modal__save-button {
+    min-height: 3.25rem;
     width: 100%;
-    height: 3.25rem;
   }
 }
