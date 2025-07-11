@@ -1,3 +1,7 @@
+:root {
+  --modal-background-color: rgba(255, 255, 255, 1);
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -19,7 +23,7 @@
 
 .modal__container {
   position: relative;
-  background-color: #fff;
+  background-color: var(--modal-background-color);
   width: 90vw;
   max-width: 45.625rem;
   min-width: 18rem;
@@ -38,7 +42,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 86.3%;
+  width: 100%;
   max-width: 39.375rem;
   height: 2.5rem;
   margin: 0 auto;
@@ -46,8 +50,10 @@
 
 .modal__title {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+
   font-weight: 500;
+  max-width: 10.56rem;
+  flex-shrink: 1;
   font-size: 2rem;
   line-height: 1;
   color: rgba(33, 33, 33, 1);
@@ -57,19 +63,19 @@
   background: none;
   border: none;
   padding: 0.5rem;
-  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.modal__close-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+.modal__close-button:hover {
+  cursor: pointer;
 }
 
 .modal__close-icon {
-  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .modal__form {
@@ -84,18 +90,17 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 86.3%;
+  width: 100%;
   max-width: 39.375rem;
   min-height: 4.875rem;
   margin: 0 auto;
 }
 
 .modal__label {
-  font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.1;
-  color: #212121;
+  color: rgba(33, 33, 33, 0.7);
   height: 1.125rem;
 }
 
@@ -107,7 +112,6 @@
   border-radius: 0.25rem;
   padding: 0 1rem;
   outline: none;
-  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   box-sizing: border-box;
 }
@@ -137,10 +141,9 @@
 
 .modal__actions {
   display: flex;
-  width: 86.3%;
+  width: 100%;
   max-width: 39.375rem;
-  margin: 0 auto;
-  padding-bottom: 2rem;
+
   align-items: flex-end;
 }
 
@@ -150,20 +153,18 @@
   background-color: #212121;
   color: #fcf5e5;
   border: none;
+  align-self: flex-start;
   border-radius: 0.5rem;
-  font-family: "Poppins", sans-serif;
+  margin: 0;
+
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
 }
 
 @media screen and (max-width: 630px) {
-  .modal {
-    padding: 1.25rem;
-  }
-
   .modal__container {
-    width: 100vw;
+    width: 100%;
     max-width: 18.75rem;
     min-width: 16rem;
     height: auto;
@@ -173,12 +174,8 @@
     gap: 1.25rem;
   }
 
-  .modal__form {
-    gap: 1.25rem;
-  }
-
   .modal__header {
-    width: 92%;
+    width: 100%;
     max-width: 17.25rem;
     height: 2.5rem;
   }
@@ -188,7 +185,7 @@
   }
 
   .modal__input-group {
-    width: 84%;
+    width: 100%;
     max-width: 15.75rem;
     min-height: 4.875rem;
   }
@@ -206,7 +203,7 @@
   }
 
   .modal__actions {
-    width: 84%;
+    width: 100%;
     max-width: 15.75rem;
     padding-bottom: 0;
   }
