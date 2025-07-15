@@ -130,86 +130,94 @@
       <footer class="footer">
         <p class="footer__text">© 2023 John Overton Spots</p>
       </footer>
+      <div id="edit-profile-modal" class="modal">
+        <div class="modal__container">
+          <div class="modal__header">
+            <h2 class="modal__title">Edit Profile</h2>
+            <button class="modal__close-button" type="button">
+              <img
+                src="images/close.svg"
+                alt="Close"
+                class="modal__close-icon"
+              />
+            </button>
+          </div>
+          <form class="modal__form">
+            <div class="modal__input-group">
+              <label class="modal__label" for="profile-name">Name</label>
+              <input
+                class="modal__input"
+                type="text"
+                id="profile-name"
+                name="name"
+                placeholder="Type your name"
+                required
+              />
+            </div>
+            <div class="modal__input-group">
+              <label class="modal__label" for="profile-description"
+                >Description</label
+              >
+              <input
+                class="modal__input"
+                type="text"
+                id="profile-description"
+                name="description"
+                placeholder="Describe yourself"
+                required
+              />
+            </div>
+            <div class="modal__actions">
+              <button class="modal__save-button" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="new-post-modal" class="modal">
+        <div class="modal__container">
+          <div class="modal__header">
+            <h2 class="modal__title">New Post</h2>
+            <button class="modal__close-button" type="button">
+              <img
+                src="images/close.svg"
+                alt="Close"
+                class="modal__close-icon"
+              />
+            </button>
+          </div>
+          <form class="modal__form">
+            <div class="modal__input-group">
+              <label class="modal__label" for="profile-name">Image link</label>
+              <input
+                class="modal__input"
+                type="text"
+                id="profile-name"
+                name="image-link"
+                placeholder="Paste a link to the picture"
+                required
+              />
+            </div>
+            <div class="modal__input-group">
+              <label class="modal__label" for="profile-description"
+                >Caption</label
+              >
+              <input
+                class="modal__input"
+                type="text"
+                id="profile-description"
+                name="caption"
+                placeholder="Type your caption"
+                required
+              />
+            </div>
+            <div class="modal__actions">
+              <button class="modal__save-button" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <div id="edit-profile-modal" class="modal">
-      <div class="modal__container">
-        <div class="modal__header">
-          <h2 class="modal__title">Edit Profile</h2>
-          <button class="modal__close-button" type="button">
-            <img src="images/close.svg" alt="Close" class="modal__close-icon" />
-          </button>
-        </div>
-        <form class="modal__form">
-          <div class="modal__input-group">
-            <label class="modal__label" for="profile-name">Name</label>
-            <input
-              class="modal__input"
-              type="text"
-              id="profile-name"
-              name="name"
-              placeholder="Type your name"
-              required
-            />
-          </div>
-          <div class="modal__input-group">
-            <label class="modal__label" for="profile-description"
-              >Description</label
-            >
-            <input
-              class="modal__input"
-              type="text"
-              id="profile-description"
-              name="description"
-              placeholder="Describe yourself"
-              required
-            />
-          </div>
-          <div class="modal__actions">
-            <button class="modal__save-button" type="submit">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div id="new-post-modal" class="modal">
-      <div class="modal__container">
-        <div class="modal__header">
-          <h2 class="modal__title">New Post</h2>
-          <button class="modal__close-button" type="button">
-            <img src="images/close.svg" alt="Close" class="modal__close-icon" />
-          </button>
-        </div>
-        <form class="modal__form">
-          <div class="modal__input-group">
-            <label class="modal__label" for="profile-name">Image link</label>
-            <input
-              class="modal__input"
-              type="text"
-              id="profile-name"
-              name="image-link"
-              placeholder="Paste a link to the picture"
-              required
-            />
-          </div>
-          <div class="modal__input-group">
-            <label class="modal__label" for="profile-description"
-              >Caption</label
-            >
-            <input
-              class="modal__input"
-              type="text"
-              id="profile-description"
-              name="caption"
-              placeholder="Type your caption"
-              required
-            />
-          </div>
-          <div class="modal__actions">
-            <button class="modal__save-button" type="submit">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
     <script src="scripts/index.js"></script>
   </body>
 </html>

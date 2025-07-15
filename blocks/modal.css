@@ -67,10 +67,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.3s;
 }
 
 .modal__close-button:hover {
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .modal__close-icon {
@@ -174,7 +176,7 @@
     height: auto;
     min-height: 21rem;
     max-height: 95vh;
-    padding: 1.5rem;
+    padding: 0.75rem;
     gap: 1.25rem;
   }
 
