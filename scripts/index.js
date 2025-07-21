@@ -1,4 +1,5 @@
 const profileModal = document.getElementById("edit-profile-modal");
+
 const postModal = document.getElementById("new-post-modal");
 
 const profileModalCloseButton = profileModal.querySelector(
@@ -11,21 +12,111 @@ const editProfileButton = document.querySelector("button.profile__edit-button");
 
 const newPostButton = document.querySelector("button.profile__new-post-button");
 
+const profileFormElement = profileModal.querySelector(".modal__form");
+
+const nameInput = profileFormElement.querySelector("#profile-name");
+
+const jobInput = profileFormElement.querySelector("#profile-description");
+
+const profileNameElement = document.querySelector(".profile__name");
+
+const profileJobElement = document.querySelector(".profile__title");
+
+const addCardFormElement = postModal.querySelector(".modal__form");
+
+const linkInput = addCardFormElement.querySelector("#profile-image");
+
+const captionInput = addCardFormElement.querySelector("#profile-caption");
+
+console.log(addCardFormElement);
+
+function closeModal(modalElem, className = "modal_is-opened") {
+  modalElem.classList.remove(className);
+}
+
+function openModal(modalElem, className = "modal_is-opened") {
+  modalElem.classList.add(className);
+}
+
+function preloadForm(nameinput, jobinput, currentNameElem, currentJobElem) {
+  if (!nameinput || !jobinput || !currentNameElem || !currentJobElem) {
+    return;
+  }
+
+  nameInput.value = currentNameElem.textContent;
+  jobInput.value = currentJobElem.textContent;
+
+  console.log(`Name Input preloaded with ${currentNameElem.textContent}\n  
+    Job Input preloaded with ${currentJobElem.textContent}
+    `);
+}
+
+function setProfileTextContent(
+  nameInputVal,
+  jobInputVal,
+  profileNameElem,
+  jobDescriptElem
+) {
+  if (!nameInputVal || !jobInputVal || !profileNameElem || !jobDescriptElem) {
+    return;
+  }
+
+  profileNameElem.textContent = nameInputVal;
+
+  jobDescriptElem.textContent = jobInputVal;
+}
+
 editProfileButton.addEventListener("click", function (e) {
-  profileModal.classList.add("modal_is-opened");
+  openModal(profileModal);
+  preloadForm(nameInput, jobInput, profileNameElement, profileJobElement);
 });
 
 profileModalCloseButton.addEventListener("click", function (e) {
+  closeModal(profileModal);
   profileModal.classList.remove("modal_is-opened");
 });
 
 newPostButton.addEventListener("click", function (e) {
-  postModal.classList.add("modal_is-opened");
+  openModal(postModal);
 });
 
 postModalCloseButton.addEventListener("click", function (e) {
-  postModal.classList.remove("modal_is-opened");
+  closeModal(postModal);
 });
+
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+
+  const profileName = nameInput.value;
+  const jobDescription = jobInput.value;
+
+  setProfileTextContent(
+    profileName,
+    jobDescription,
+    profileNameElement,
+    profileJobElement
+  );
+
+  closeModal(profileModal);
+
+  console.log(
+    `Profile Edit Form Submitted with name ${profileName} and job description ${jobDescription}`
+  );
+}
+
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+
+  console.log(`The image link input value is currently ${linkInput.value}`);
+
+  console.log(`The caption input value is currently ${captionInput.value}`);
+
+  closeModal(postModal);
+}
+
+profileFormElement.addEventListener("submit", handleFormSubmit);
+
+addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 const initialCards = [
   {
