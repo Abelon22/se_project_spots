@@ -73,7 +73,6 @@ editProfileButton.addEventListener("click", function (e) {
 
 profileModalCloseButton.addEventListener("click", function (e) {
   closeModal(profileModal);
-  profileModal.classList.remove("modal_is-opened");
 });
 
 newPostButton.addEventListener("click", function (e) {
