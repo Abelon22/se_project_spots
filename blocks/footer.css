@@ -1,11 +1,3 @@
-:root {
-  --color-primary-white: #ffffff;
-
-  --color-background: #fcf5e5;
-
-  --color-cards-background: #212121;
-}
-
 .footer {
   width: 100%;
 
@@ -26,7 +18,7 @@
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 400;
   text-align: center;
-  color: var(--color-cards-background);
+  color: #212121;
 }
 
 @media screen and (max-width: 630px) {

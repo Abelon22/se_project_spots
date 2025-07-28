@@ -1,11 +1,5 @@
-:root {
-  --color-primary-white: #ffffff;
-  --color-background: #fcf5e5;
-  --color-button-text: #212121;
-}
-
 .header {
-  background-color: var(--color-primary-white);
+  background-color: #ffffff;
   height: 2.875rem;
   width: 100%;
   display: flex;

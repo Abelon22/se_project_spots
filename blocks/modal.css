@@ -1,7 +1,3 @@
-:root {
-  --modal-container-background-color: rgba(255, 255, 255, 1);
-}
-
 .modal {
   position: fixed;
   top: 0;
@@ -25,7 +21,7 @@
 
 .modal__container {
   position: relative;
-  background-color: var(--modal-container-background-color);
+  background-color: rgba(255, 255, 255, 1);
   width: 90vw;
   max-width: 45.625rem;
   min-width: 18rem;
