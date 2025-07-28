@@ -26,6 +26,7 @@
   max-width: 25.8125rem;
   height: auto;
   justify-self: center;
+  position: relative;
 }
 
 .cards__image {
@@ -61,6 +62,33 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: calc(100% - 2rem);
+}
+
+.cards__delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("../images/delete.svg");
+  border-radius: 50%;
+  background-size: contain;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.2s ease;
+}
+
+.cards__delete:hover {
+  background-image: url("../images/delete-hover.svg");
+  transform: scale(1.1);
 }
 
 .cards__heart {

@@ -28,7 +28,55 @@ const linkInput = addCardFormElement.querySelector("#profile-image");
 
 const captionInput = addCardFormElement.querySelector("#profile-caption");
 
-console.log(addCardFormElement);
+const cardTemplate = document.querySelector("#card-template").content;
+
+const cardSection = document.querySelector(".cards__container");
+
+const imageModal = document.getElementById("image-modal");
+const imageModalCloseButton = imageModal.querySelector(".modal__close-button");
+const modalImage = imageModal.querySelector(".modal__image");
+const modalCaption = imageModal.querySelector(".modal__caption");
+
+function getCardElement({ name, link }) {
+  const cardElement = cardTemplate
+    .querySelector(".cards__item")
+    .cloneNode(true);
+
+  const cardTitle = cardElement.querySelector(".cards__name");
+  const cardImage = cardElement.querySelector(".cards__image");
+
+  const likeBtn = cardElement.querySelector(".cards__heart");
+  const deleteBtn = cardElement.querySelector(".cards__delete");
+
+  cardTitle.textContent = name;
+  cardImage.setAttribute("alt", name);
+  cardImage.src = link;
+
+  cardImage.addEventListener("click", function (_) {
+    modalCaption.textContent = name;
+    modalImage.src = link;
+    modalImage.alt = name;
+    openModal(imageModal);
+  });
+
+  likeBtn.addEventListener("click", function (e) {
+    const isLiked = e.target.getAttribute("data-liked") === "true";
+
+    if (isLiked) {
+      e.target.src = "images/heart.svg";
+      e.target.setAttribute("data-liked", "false");
+    } else {
+      e.target.src = "images/liked.svg";
+      e.target.setAttribute("data-liked", "true");
+    }
+  });
+
+  deleteBtn.addEventListener("click", function (_) {
+    cardElement.remove();
+  });
+
+  return cardElement;
+}
 
 function closeModal(modalElem, className = "modal_is-opened") {
   modalElem.classList.remove(className);
@@ -39,12 +87,8 @@ function openModal(modalElem, className = "modal_is-opened") {
 }
 
 function preloadForm(nameinput, jobinput, currentNameElem, currentJobElem) {
-  if (!nameinput || !jobinput || !currentNameElem || !currentJobElem) {
-    return;
-  }
-
-  nameInput.value = currentNameElem.textContent;
-  jobInput.value = currentJobElem.textContent;
+  nameinput.value = currentNameElem.textContent;
+  jobinput.value = currentJobElem.textContent;
 
   console.log(`Name Input preloaded with ${currentNameElem.textContent}\n  
     Job Input preloaded with ${currentJobElem.textContent}
@@ -57,14 +101,14 @@ function setProfileTextContent(
   profileNameElem,
   jobDescriptElem
 ) {
-  if (!nameInputVal || !jobInputVal || !profileNameElem || !jobDescriptElem) {
-    return;
-  }
-
   profileNameElem.textContent = nameInputVal;
 
   jobDescriptElem.textContent = jobInputVal;
 }
+
+imageModalCloseButton.addEventListener("click", function (e) {
+  closeModal(imageModal);
+});
 
 editProfileButton.addEventListener("click", function (e) {
   openModal(profileModal);
@@ -106,9 +150,13 @@ function handleFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  console.log(`The image link input value is currently ${linkInput.value}`);
+  const data = { link: linkInput.value, name: captionInput.value };
 
-  console.log(`The caption input value is currently ${captionInput.value}`);
+  console.log(data);
+
+  const cardElem = getCardElement(data);
+
+  cardSection.prepend(cardElem);
 
   closeModal(postModal);
 }
@@ -142,6 +190,14 @@ const initialCards = [
     name: "Mountain house",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
+  {
+    name: "Landscape view",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
-initialCards.forEach((card) => console.log(card));
+initialCards.forEach((card) => {
+  const cardElem = getCardElement(card);
+
+  cardSection.prepend(cardElem);
+});
