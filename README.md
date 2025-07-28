@@ -26,7 +26,7 @@ Spots is a responsive web project designed to help users discover, save, and sha
 
 ## Development Notes
 
-- I have a new found enjoyment for responsive web design and utilzing modern css properties like grid and flexbox. It was fulfilling to drag the screen to and fro, changing the screen sizes and seeing the elements sizes and styles change fluidly. This is great web development foundation and I am thankful to Triple Ten for providing a professional workflow. Figma
+- I have found a new enjoyment for responsive web design and utilzing modern css properties like grid and flexbox. It was fulfilling to drag the screen to and fro, changing the screen sizes and seeing the elements sizes and styles change fluidly. This is great web development foundation and I am thankful to Triple Ten for providing a professional workflow. Figma
   --> Property Extraction --> Code.
 
 ## Figma Design
