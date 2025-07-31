@@ -15,6 +15,23 @@
   transition: visibility 0.4s, opacity 0.6s linear;
 }
 
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(33, 33, 33, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 3;
+
+  transition: visibility 0.4s, opacity 0.6s linear;
+}
+
 .modal_is-opened {
   visibility: visible;
   opacity: 1;
@@ -167,7 +184,7 @@
   background-color: rgba(33, 33, 33, 0.7);
 }
 
-#image-modal .modal__container {
+.preview-modal__container {
   position: relative;
   background: none;
   width: auto;
@@ -185,11 +202,10 @@
   justify-content: center;
   overflow: visible;
 }
-/* The Figma Project Link wasn't displaying this pop up card so I did this based on the preview video */
 
-#image-modal .modal__close-button {
+.preview-modal__close-button {
   position: absolute;
-  top: -2.5rem;
+  top: -1rem;
   right: -2.4rem;
   background: none;
   border: none;
@@ -204,25 +220,25 @@
   height: auto;
 }
 
-#image-modal .modal__close-button:hover {
+.preview-modal__close-button:hover {
   cursor: pointer;
   opacity: 0.7;
 }
 
-#image-modal .modal__close-icon {
+.preview-modal__close-icon {
   width: 2rem;
   height: 2rem;
   filter: brightness(0) invert(1);
 }
 
-#image-modal .modal__image {
+.preview-modal__image {
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
   border-radius: 0.5rem;
 }
 
-#image-modal .modal__caption {
+.preview-modal__caption {
   position: absolute;
   bottom: -2rem;
   left: 0;
@@ -286,29 +302,29 @@
     width: 100%;
   }
 
-  #image-modal .modal__container {
+  .preview-modal__container {
     max-width: 95vw;
     max-height: 90vh;
   }
 
-  #image-modal .modal__image {
-    max-width: 95vw;
+  .preview-modal__image {
+    max-width: 18rem;
     max-height: 90vh;
   }
 
-  #image-modal .modal__caption {
+  .preview-modal__caption {
     font-size: 1.125rem;
     bottom: -1.5rem;
   }
 
-  #image-modal .modal__close-button {
-    top: 0.75rem;
-    right: 0.75rem;
+  .preview-modal__close-button {
+    top: -1.75rem;
+    right: -1.5rem;
     width: 2.5rem;
     height: 2.5rem;
   }
 
-  #image-modal .modal__close-icon {
+  .preview-modal__close-icon {
     width: 1.5rem;
     height: 1.5rem;
   }

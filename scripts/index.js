@@ -32,10 +32,12 @@ const cardTemplate = document.querySelector("#card-template").content;
 
 const cardSection = document.querySelector(".cards__container");
 
-const imageModal = document.getElementById("image-modal");
-const imageModalCloseButton = imageModal.querySelector(".modal__close-button");
-const modalImage = imageModal.querySelector(".modal__image");
-const modalCaption = imageModal.querySelector(".modal__caption");
+const imageModal = document.querySelector(".preview-modal");
+const imageModalCloseButton = imageModal.querySelector(
+  ".preview-modal__close-button"
+);
+const modalImage = imageModal.querySelector(".preview-modal__image");
+const modalCaption = imageModal.querySelector(".preview-modal__caption");
 
 function getCardElement({ name, link }) {
   const cardElement = cardTemplate
