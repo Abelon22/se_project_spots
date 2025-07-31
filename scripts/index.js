@@ -62,15 +62,7 @@ function getCardElement({ name, link }) {
   });
 
   likeBtn.addEventListener("click", function (e) {
-    const isLiked = e.target.getAttribute("data-liked") === "true";
-
-    if (isLiked) {
-      e.target.src = "images/heart.svg";
-      e.target.setAttribute("data-liked", "false");
-    } else {
-      e.target.src = "images/liked.svg";
-      e.target.setAttribute("data-liked", "true");
-    }
+    likeBtn.classList.toggle("cards__heart_liked");
   });
 
   deleteBtn.addEventListener("click", function (_) {
@@ -149,14 +141,18 @@ function handleFormSubmit(evt) {
   );
 }
 
+function renderCard(data, container) {
+  const cardElement = getCardElement(data);
+
+  container.prepend(cardElement);
+}
+
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
   const data = { link: linkInput.value, name: captionInput.value };
 
-  const cardElem = getCardElement(data);
-
-  cardSection.prepend(cardElem);
+  renderCard(data, cardSection);
 
   closeModal(postModal);
 }

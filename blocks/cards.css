@@ -94,16 +94,26 @@
 .cards__heart {
   width: 1.5rem;
   height: 1.5rem;
+  background-image: url("../images/heart.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   opacity: 0.4;
   cursor: pointer;
   flex-shrink: 0;
   transition: opacity 0.3s ease;
+  border: none;
+  background-color: transparent;
 }
 
 .cards__heart:hover {
   opacity: 1;
-
   cursor: pointer;
+}
+
+.cards__heart_liked {
+  background-image: url("../images/liked.svg");
+  opacity: 1;
 }
 
 @media screen and (max-width: 1320px) and (min-width: 631px) {
