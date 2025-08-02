@@ -68,27 +68,25 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   background-image: url("../images/delete.svg");
   border-radius: 50%;
-  background-size: contain;
-
+  background-size: 0.75rem 0.9375rem;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
   z-index: 1;
   border: none;
   outline: none;
-  background-color: transparent;
   padding: 0;
   margin: 0;
-  transition: transform 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .cards__delete:hover {
-  background-image: url("../images/delete-hover.svg");
-  transform: scale(1.1);
+  background-color: rgba(255, 101, 101, 1);
 }
 
 .cards__heart {
@@ -137,7 +135,7 @@
   .cards__container {
     grid-auto-rows: auto;
     gap: 1.25rem;
-    padding: 0 1.25rem;
+    padding: 0;
   }
 
   .cards__item {
