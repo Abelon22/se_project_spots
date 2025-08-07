@@ -1,3 +1,7 @@
+import { settings, clearValidation, disableButton } from "./validation.js";
+
+const formModalContainers = Array.from(document.querySelectorAll(".modal"));
+
 const profileModal = document.getElementById("edit-profile-modal");
 
 const postModal = document.getElementById("new-post-modal");
@@ -39,6 +43,34 @@ const imageModalCloseButton = imageModal.querySelector(
 const modalImage = imageModal.querySelector(".preview-modal__image");
 const modalCaption = imageModal.querySelector(".preview-modal__caption");
 
+const allModals = [...formModalContainers, imageModal];
+
+function handleEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(
+      ".modal.modal_is-opened, .preview-modal.modal_is-opened"
+    );
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
+}
+
+function setModalCloseEventListeners(modals) {
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (evt) => {
+      if (
+        evt.target.classList.contains("modal") ||
+        evt.target.classList.contains("preview-modal")
+      ) {
+        closeModal(modal);
+      }
+    });
+  });
+}
+
+setModalCloseEventListeners(allModals);
+
 function getCardElement({ name, link }) {
   const cardElement = cardTemplate
     .querySelector(".cards__item")
@@ -74,10 +106,14 @@ function getCardElement({ name, link }) {
 
 function closeModal(modalElem, className = "modal_is-opened") {
   modalElem.classList.remove(className);
+
+  document.removeEventListener("keydown", handleEscapeKey);
 }
 
 function openModal(modalElem, className = "modal_is-opened") {
   modalElem.classList.add(className);
+
+  document.addEventListener("keydown", handleEscapeKey);
 }
 
 function preloadForm(nameinput, jobinput, currentNameElem, currentJobElem) {
@@ -107,6 +143,8 @@ imageModalCloseButton.addEventListener("click", function (e) {
 editProfileButton.addEventListener("click", function (e) {
   openModal(profileModal);
   preloadForm(nameInput, jobInput, profileNameElement, profileJobElement);
+
+  clearValidation(profileFormElement, settings);
 });
 
 profileModalCloseButton.addEventListener("click", function (e) {
@@ -134,6 +172,8 @@ function handleFormSubmit(evt) {
     profileJobElement
   );
 
+  evt.currentTarget.reset();
+
   closeModal(profileModal);
 
   console.log(
@@ -153,6 +193,10 @@ function handleAddCardSubmit(evt) {
   const data = { link: linkInput.value, name: captionInput.value };
 
   renderCard(data, cardSection);
+  evt.currentTarget.reset();
+
+  disableButton(addCardFormElement, settings);
+  clearValidation(addCardFormElement, settings);
 
   closeModal(postModal);
 }

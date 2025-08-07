@@ -82,7 +82,10 @@
                 name="name"
                 placeholder="Type your name"
                 required
+                minlength="2"
+                maxlength="40"
               />
+              <span class="modal__error" id="profile-name-error"></span>
             </div>
             <div class="modal__input-group">
               <label class="modal__label" for="profile-description"
@@ -95,7 +98,10 @@
                 name="description"
                 placeholder="Describe yourself"
                 required
+                minlength="2"
+                maxlength="200"
               />
+              <span class="modal__error" id="profile-description-error"></span>
             </div>
             <div class="modal__actions">
               <button class="modal__save-button" type="submit">Save</button>
@@ -117,20 +123,19 @@
           </div>
           <form class="modal__form">
             <div class="modal__input-group">
-              <label class="modal__label" for="profile-name">Image link</label>
+              <label class="modal__label" for="profile-image">Image link</label>
               <input
                 class="modal__input"
-                type="text"
+                type="url"
                 id="profile-image"
                 name="image-link"
                 placeholder="Paste a link to the picture"
                 required
               />
+              <span class="modal__error" id="profile-image-error"></span>
             </div>
             <div class="modal__input-group">
-              <label class="modal__label" for="profile-description"
-                >Caption</label
-              >
+              <label class="modal__label" for="profile-caption">Caption</label>
               <input
                 class="modal__input"
                 type="text"
@@ -138,7 +143,10 @@
                 name="caption"
                 placeholder="Type your caption"
                 required
+                minlength="2"
+                maxlength="30"
               />
+              <span class="modal__error" id="profile-caption-error"></span>
             </div>
             <div class="modal__actions">
               <button class="modal__save-button" type="submit">Save</button>
@@ -180,7 +188,8 @@
         </article>
       </div>
     </template>
+    <script type="module" src="scripts/validation.js"></script>
 
-    <script src="scripts/index.js"></script>
+    <script type="module" src="scripts/index.js"></script>
   </body>
 </html>

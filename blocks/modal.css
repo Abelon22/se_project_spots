@@ -140,13 +140,18 @@
   box-shadow: 0 0 0 2px rgba(33, 33, 33, 0.1);
 }
 
+.modal__input:focus:invalid {
+  border: 1px solid #ff0000;
+}
+
 .modal__input:placeholder {
   color: rgba(33, 33, 33, 0.3);
 }
 
 .modal__input:hover {
   cursor: pointer;
-  border: 1px solid rgba(33, 33, 33, 1);
+  border: 1px solid rgba(33, 33, 33, 0.5);
+  box-shadow: 0 0 0 2px rgba(33, 33, 33, 0.1);
 }
 
 .modal__input:not(:placeholder-shown) {
@@ -155,6 +160,33 @@
   font-style: bold;
   font-size: 1.1rem;
   color: rgba(33, 33, 33, 1);
+}
+
+.modal__input_type_error {
+  border: 1px solid #ff0000;
+}
+
+.modal__error {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: #ff0000;
+  opacity: 0;
+  transition: opacity 0.3s;
+  min-height: 1.25rem;
+}
+
+.modal__error_visible {
+  opacity: 1;
+}
+
+.modal__button_disabled {
+  background-color: rgba(33, 33, 33, 0.2);
+  color: rgba(252, 245, 229, 0.4);
+  cursor: not-allowed;
+}
+
+.modal__button_disabled:hover {
+  background-color: rgba(33, 33, 33, 0.2);
 }
 
 .modal__actions {
@@ -182,6 +214,16 @@
 .modal__save-button:hover {
   cursor: pointer;
   background-color: rgba(33, 33, 33, 0.7);
+}
+
+.modal__button_disabled {
+  background-color: rgba(33, 33, 33, 0.2);
+  color: rgba(252, 245, 229, 0.4);
+  cursor: not-allowed;
+}
+
+.modal__button_disabled:hover {
+  background-color: rgba(33, 33, 33, 0.2);
 }
 
 .preview-modal__container {
