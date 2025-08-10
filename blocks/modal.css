@@ -99,7 +99,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+
   flex: 1;
   width: 100%;
 }
