@@ -16,8 +16,18 @@ function enableValidation(settings) {
   });
 }
 
-function checkInputValidity(inputElement) {
-  return inputElement.checkValidity();
+function checkInputValidity(inputElement, config) {
+  const errorSpan = inputElement
+    .closest(".modal__input-group")
+    .querySelector(config.errorClass);
+
+  if (!inputElement.checkValidity()) {
+    errorSpan.textContent = inputElement.validationMessage;
+    showInputError(inputElement, errorSpan, config);
+  } else {
+    errorSpan.textContent = "";
+    hideInputError(inputElement, errorSpan, config);
+  }
 }
 
 function showInputError(input, modal, settings) {
@@ -53,19 +63,8 @@ function setEventListeners(formElement, config) {
   toggleButtonState(inputList, buttonElem, config);
 
   inputList.forEach((inputElement) => {
-    const errorSpan = inputElement
-      .closest(".modal__input-group")
-      .querySelector(config.errorClass);
-
     inputElement.addEventListener("input", (evt) => {
-      if (!checkInputValidity(evt.currentTarget)) {
-        errorSpan.textContent = evt.currentTarget.validationMessage;
-        showInputError(evt.currentTarget, errorSpan, config);
-      } else {
-        errorSpan.textContent = "";
-        hideInputError(evt.currentTarget, errorSpan, config);
-      }
-
+      checkInputValidity(evt.currentTarget, config);
       toggleButtonState(inputList, buttonElem, config);
     });
   });
