@@ -1,4 +1,9 @@
-import { settings, clearValidation, disableButton } from "./validation.js";
+import {
+  settings,
+  clearValidation,
+  disableButton,
+  enableValidation,
+} from "../scripts/validation.js";
 
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
@@ -44,6 +49,8 @@ const modalImage = imageModal.querySelector(".preview-modal__image");
 const modalCaption = imageModal.querySelector(".preview-modal__caption");
 
 const allModals = [...formModalContainers, imageModal];
+
+enableValidation(settings);
 
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
