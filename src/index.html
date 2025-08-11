@@ -17,7 +17,11 @@
   <body>
     <div class="page">
       <header class="header">
-        <img src="images/logo.svg" alt="Spots" class="header__logo" />
+        <img
+          src="<%= require('./images/logo.svg') %>"
+          alt="Spots"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile">
@@ -25,7 +29,7 @@
             <div class="profile__avatar-section">
               <img
                 class="profile__avatar-image"
-                src="images/avatar.jpg"
+                src="<%= require('./images/avatar.jpg') %>"
                 alt="Profile Image"
               />
               <div class="profile__info">
@@ -33,7 +37,7 @@
                 <p class="profile__title">Civil Aviator</p>
                 <button class="profile__edit-button">
                   <img
-                    src="images/pencil.svg"
+                    src="<%= require('./images/pencil.svg') %>"
                     alt="Edit Profile"
                     class="profile__edit-icon"
                   />
@@ -43,7 +47,7 @@
             </div>
             <button class="profile__new-post-button">
               <img
-                src="images/plus.svg"
+                src="<%= require('./images/plus.svg') %>"
                 alt="New Post Icon"
                 class="profile__plus-icon"
               />
@@ -64,7 +68,7 @@
             <h2 class="modal__title">Edit Profile</h2>
             <button class="modal__close-button" type="button">
               <img
-                src="images/close.svg"
+                src="<%= require('./images/close.svg') %>"
                 alt="Close"
                 class="modal__close-icon"
               />
@@ -113,7 +117,7 @@
             <h2 class="modal__title">New Post</h2>
             <button class="modal__close-button" type="button">
               <img
-                src="images/close.svg"
+                src="<%= require('./images/close.svg') %>"
                 alt="Close"
                 class="modal__close-icon"
               />
@@ -156,7 +160,7 @@
         <div class="preview-modal__container">
           <button class="preview-modal__close-button" type="button">
             <img
-              src="images/close.svg"
+              src="<%= require('./images/close.svg') %>"
               alt="Close"
               class="preview-modal__close-icon"
             />
