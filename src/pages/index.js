@@ -5,6 +5,8 @@ import {
   enableValidation,
 } from "../scripts/validation.js";
 
+import styles from "./index.css";
+
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
 const profileModal = document.getElementById("edit-profile-modal");
