@@ -27,11 +27,24 @@
         <section class="profile">
           <div class="profile__container">
             <div class="profile__avatar-section">
-              <img
-                class="profile__avatar-image"
-                src="<%= require('./images/avatar.jpg') %>"
-                alt="Profile Image"
-              />
+              <div class="profile__avatar-container">
+                <img
+                  class="profile__avatar-image"
+                  src="<%= require('./images/avatar.jpg') %>"
+                  alt="Profile Image"
+                />
+                <div class="profile__avatar-edit">
+                  <button class="profile__avatar-edit-button">
+                    <img
+                      src="<%= require('./images/pencil.svg') %>"
+                      alt="Edit Profile"
+                      class="profile__avatar-edit-icon"
+                    />
+                    Edit Avatar
+                  </button>
+                </div>
+              </div>
+
               <div class="profile__info">
                 <h2 class="profile__name">Bessie Coleman</h2>
                 <p class="profile__title">Civil Aviator</p>
@@ -149,6 +162,52 @@
                 maxlength="30"
               />
               <span class="modal__error" id="profile-caption-error"></span>
+            </div>
+            <div class="modal__actions">
+              <button class="modal__save-button" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="delete-modal" class="modal">
+        <div class="modal__container modal__container_delete">
+          <div class="modal__header">
+            <h2 class="modal__title">Delete this item?</h2>
+          </div>
+          <form class="modal__form" novalidate>
+            <div class="modal__actions">
+              <button class="modal__delete-button" type="submit">Delete</button>
+              <button class="modal__cancel-button" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="edit-avatar-modal" class="modal">
+        <div class="modal__container">
+          <div class="modal__header">
+            <h2 class="modal__title">Edit profile avatar</h2>
+            <button class="modal__close-button" type="button">
+              <img
+                src="<%= require('./images/close.svg') %>"
+                alt="Close"
+                class="modal__close-icon"
+              />
+            </button>
+          </div>
+          <form class="modal__form">
+            <div class="modal__input-group">
+              <label class="modal__label" for="profile-picture"
+                >Profile Picture</label
+              >
+              <input
+                class="modal__input"
+                type="url"
+                id="profile-picture"
+                name="profile-picture"
+                placeholder="Paste the link to an image"
+                required
+              />
+              <span class="modal__error" id="profile-picture-error"></span>
             </div>
             <div class="modal__actions">
               <button class="modal__save-button" type="submit">Save</button>

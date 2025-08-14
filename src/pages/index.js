@@ -20,6 +20,30 @@ const profileModalCloseButton = profileModal.querySelector(
   ".modal__close-button"
 );
 
+const avatarModal = document.getElementById("edit-avatar-modal");
+
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-button");
+
+avatarModalCloseBtn.addEventListener("click", function (_) {
+  closeModal(avatarModal);
+});
+
+const avatarModalForm = avatarModal.querySelector(".modal__form");
+
+const avatarEditButton = document.querySelector(
+  "button.profile__avatar-edit-button"
+);
+
+avatarEditButton.addEventListener("click", function (_) {
+  openModal(avatarModal);
+});
+
+const deleteModal = document.querySelector("#delete-modal");
+
+const deleteModalForm = deleteModal.querySelector(".modal__form");
+
+const deleteModalCancel = deleteModal.querySelector(".modal__cancel-button");
+
 const postModalCloseButton = postModal.querySelector(".modal__close-button");
 
 const editProfileButton = document.querySelector("button.profile__edit-button");
@@ -65,7 +89,7 @@ const api = new Api({
   },
 });
 
-enableValidation(settings);
+// enableValidation(settings);
 
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
@@ -91,9 +115,44 @@ function setModalCloseEventListeners(modals) {
   });
 }
 
+function handleAvatarUpdate(e) {
+  e.preventDefault();
+
+  const profileLink = e.target.elements["profile-picture"].value;
+
+  console.log(profileLink);
+
+  api
+    .updateUserAvatar(profileLink)
+    .then((res) => {
+      profileImage.src = res.avatar;
+      closeModal(avatarModal);
+    })
+    .catch((err) => console.error(err));
+}
+
+avatarModalForm.addEventListener("submit", handleAvatarUpdate);
+
 setModalCloseEventListeners(allModals);
 
-function getCardElement({ name, link }) {
+let selectedId;
+let selectedCard;
+
+function handleDeleteCard(idSelected, cardSelected) {
+  deleteModal.classList.add("modal_is-opened");
+
+  selectedCard = cardSelected;
+  selectedId = idSelected;
+}
+
+function handleCancel() {
+  selectedId = null;
+  selectedCard = null;
+  deleteModal.classList.remove("modal_is-opened");
+}
+
+function getCardElement(card) {
+  console.log(card, "\n\n");
   const cardElement = cardTemplate
     .querySelector(".cards__item")
     .cloneNode(true);
@@ -104,27 +163,63 @@ function getCardElement({ name, link }) {
   const likeBtn = cardElement.querySelector(".cards__heart");
   const deleteBtn = cardElement.querySelector(".cards__delete");
 
-  cardTitle.textContent = name;
-  cardImage.setAttribute("alt", name);
-  cardImage.src = link;
+  cardTitle.textContent = card.name;
+  cardImage.setAttribute("alt", card.name);
+  cardImage.src = card.link;
 
   cardImage.addEventListener("click", function (_) {
-    modalCaption.textContent = name;
-    modalImage.src = link;
-    modalImage.alt = name;
+    modalCaption.textContent = card.name;
+    modalImage.src = card.link;
+    modalImage.alt = card.name;
     openModal(imageModal);
   });
 
   likeBtn.addEventListener("click", function (e) {
-    likeBtn.classList.toggle("cards__heart_liked");
+    api.getCards().then((cards) => {
+      const thisCard = cards.find((c) => (c._id = card._id));
+
+      if (thisCard.isLiked) {
+        api
+          .dislikeCard(card._id)
+          .then((_) => likeBtn.classList.toggle("cards__heart_liked"));
+      } else {
+        api
+          .likeCard(card._id)
+          .then((_) => likeBtn.classList.toggle("cards__heart_liked"));
+      }
+    });
   });
 
   deleteBtn.addEventListener("click", function (_) {
-    cardElement.remove();
+    handleDeleteCard(card._id, cardElement);
   });
 
   return cardElement;
 }
+
+function handleDeleteSubmit(e) {
+  e.preventDefault();
+
+  if (selectedId === null) return;
+
+  console.log("SELECTED CARD IN HANDLE DELETE SUBMIT", selectedCard);
+
+  api
+    .deleteCard(selectedId)
+    .then((res) => {
+      deleteModal.classList.remove("modal_is-opened");
+
+      selectedCard.remove();
+
+      selectedId = null;
+      selectedCard = null;
+    })
+    .catch((err) => console.error(err));
+}
+
+deleteModalForm.addEventListener("submit", handleDeleteSubmit);
+
+deleteModalCancel.addEventListener("click", handleCancel);
 
 function closeModal(modalElem, className = "modal_is-opened") {
   modalElem.classList.remove(className);
@@ -184,19 +279,27 @@ postModalCloseButton.addEventListener("click", function (e) {
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
-  const profileName = nameInput.value;
-  const jobDescription = jobInput.value;
+  // const profileName = nameInput.value;
+  // const jobDescription = jobInput.value;
 
-  setProfileTextContent(
-    profileName,
-    jobDescription,
-    profileNameElement,
-    profileJobElement
-  );
+  const profName = evt.target.elements.name.value;
+  const profDescription = evt.target.elements.description.value;
 
-  evt.currentTarget.reset();
-
-  closeModal(profileModal);
+  api
+    .updateUserInfo({ name: profName, about: profDescription })
+    .then((res) => {
+      setProfileTextContent(
+        profName,
+        profDescription,
+        profileNameElement,
+        profileJobElement
+      );
+      closeModal(profileModal);
+      evt.currentTarget.reset();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
   console.log(
     `Profile Edit Form Submitted with name ${profileName} and job description ${jobDescription}`
@@ -258,8 +361,36 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((card) => {
-  const cardElem = getCardElement(card);
+function renderCards(cards) {
+  cardSection.innerHTML = "";
+  cards.forEach((card) => {
+    const cardElem = getCardElement(card);
+    cardSection.prepend(cardElem);
+  });
+}
 
-  cardSection.prepend(cardElem);
-});
+api
+  .createInitialCards(initialCards)
+  .then((cards) => {
+    console.log(cards);
+  })
+  .catch((err) => console.error(err));
+
+api
+  .getCards()
+  .then((cards) => {
+    console.log(cards);
+    renderCards(cards);
+  })
+  .catch((err) => console.error(err));
+
+api
+  .getUserInfo()
+  .then(({ name, about, avatar, _id }) => {
+    profileImage.src = avatar;
+    profileJobElement.textContent = about;
+    profileNameElement.textContent = name;
+  })
+  .catch((err) => console.error(err));
+
+enableValidation(settings);

@@ -54,6 +54,15 @@
   overflow-y: auto;
 }
 
+.modal__container_delete {
+  width: 100%;
+  max-width: 39.375rem; /* 630px */
+  min-width: 20rem; /* 320px sensible floor */
+  min-height: 10.75rem; /* ~172px */
+  max-height: 50vh;
+  gap: 1.25rem;
+}
+
 .modal__header {
   display: flex;
   justify-content: space-between;
@@ -211,6 +220,39 @@
   font-size: 1rem;
 }
 
+.modal__delete-button {
+  min-width: 9.75rem;
+  min-height: 3.25rem;
+  background-color: #ff3b30;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  margin-right: 0.75rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.modal__delete-button:hover {
+  cursor: pointer;
+  background-color: #e23329;
+}
+
+.modal__cancel-button {
+  min-width: 9.75rem;
+  min-height: 3.25rem;
+  background-color: transparent;
+  color: #212121;
+  border: 1px solid rgba(33, 33, 33, 0.4);
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.modal__cancel-button:hover {
+  cursor: pointer;
+  background-color: rgba(33, 33, 33, 0.05);
+}
+
 .modal__save-button:hover {
   cursor: pointer;
   background-color: rgba(33, 33, 33, 0.7);
@@ -341,9 +383,23 @@
     max-width: 15.75rem;
   }
 
+  .modal__container_delete {
+    max-width: 18rem;
+    min-width: auto;
+    min-height: 10.75rem;
+    padding: 12px;
+    gap: 16px;
+  }
+
   .modal__save-button {
     min-height: 3.25rem;
     width: 100%;
+  }
+
+  .modal__delete-button,
+  .modal__cancel-button {
+    min-height: 3rem;
+    width: calc(50% - 6px);
   }
 
   .preview-modal__container {
