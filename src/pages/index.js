@@ -4,8 +4,11 @@ import {
   disableButton,
   enableValidation,
 } from "../scripts/validation.js";
+import Api from "../../utils/Api.js";
 
 import styles from "./index.css";
+
+// api instantiation
 
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
@@ -31,6 +34,8 @@ const jobInput = profileFormElement.querySelector("#profile-description");
 
 const profileNameElement = document.querySelector(".profile__name");
 
+const profileImage = document.querySelector(".profile__avatar-image");
+
 const profileJobElement = document.querySelector(".profile__title");
 
 const addCardFormElement = postModal.querySelector(".modal__form");
@@ -51,6 +56,14 @@ const modalImage = imageModal.querySelector(".preview-modal__image");
 const modalCaption = imageModal.querySelector(".preview-modal__caption");
 
 const allModals = [...formModalContainers, imageModal];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "d4c8dc50-c7aa-4639-8c6f-3b7059b24ec3",
+    "Content-Type": "application/json",
+  },
+});
 
 enableValidation(settings);
 
