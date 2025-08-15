@@ -170,7 +170,6 @@ class Api {
               .then(() => this.deleteCard(card._id))
               .then((result) => {
                 deleted.push(result);
-                return this._sleep(100);
               });
           }, Promise.resolve())
           .then(() => deleted);

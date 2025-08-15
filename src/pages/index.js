@@ -8,53 +8,48 @@ import Api from "../../utils/Api.js";
 
 import styles from "./index.css";
 
+const initialCards = [
+  {
+    name: "Val Thorens",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+  },
+  {
+    name: "Restaurant terrace",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+  },
+  {
+    name: "An outdoor cafe",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+  },
+  {
+    name: "A very long bridge, over the forest and through the trees",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+  },
+  {
+    name: "Tunnel with morning light",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+  },
+  {
+    name: "Mountain house",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+  },
+  {
+    name: "Landscape view",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+];
+
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
-const profileModal = document.getElementById("edit-profile-modal");
+// ALl Profile Modal Selections - close button , open button, form element
 
-const postModal = document.getElementById("new-post-modal");
+const profileModal = document.getElementById("edit-profile-modal");
 
 const profileModalCloseButton = profileModal.querySelector(
   ".modal__close-button"
 );
 
-const avatarModal = document.getElementById("edit-avatar-modal");
-
-const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-button");
-
-avatarModalCloseBtn.addEventListener("click", function (_) {
-  closeModal(avatarModal);
-});
-
-const avatarModalForm = avatarModal.querySelector(".modal__form");
-
-const avatarEditButton = document.querySelector(
-  "button.profile__avatar-edit-button"
-);
-
-avatarEditButton.addEventListener("click", function (_) {
-  openModal(avatarModal);
-});
-
-const deleteModal = document.querySelector("#delete-modal");
-
-const deleteModalCloseBtn = deleteModal.querySelector(
-  ".modal__close-button_delete"
-);
-
-deleteModalCloseBtn.addEventListener("click", function (_) {
-  closeModal(deleteModal);
-});
-
-const deleteModalForm = deleteModal.querySelector(".modal__form");
-
-const deleteModalCancel = deleteModal.querySelector(".modal__cancel-button");
-
-const postModalCloseButton = postModal.querySelector(".modal__close-button");
-
 const editProfileButton = document.querySelector("button.profile__edit-button");
-
-const newPostButton = document.querySelector("button.profile__new-post-button");
 
 const profileFormElement = profileModal.querySelector(".modal__form");
 
@@ -64,15 +59,58 @@ const jobInput = profileFormElement.querySelector("#profile-description");
 
 const profileNameElement = document.querySelector(".profile__name");
 
-const profileImage = document.querySelector(".profile__avatar-image");
-
 const profileJobElement = document.querySelector(".profile__title");
 
+// these are for preloading the form
+
+// All Profile Modal Selections End
+
+// Avatar Modal Selections - close button , open button, form element
+
+const avatarModal = document.getElementById("edit-avatar-modal");
+
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-button");
+
+const avatarModalForm = avatarModal.querySelector(".modal__form");
+
+const avatarEditButton = document.querySelector(
+  "button.profile__avatar-edit-button"
+);
+const profileImage = document.querySelector(".profile__avatar-image");
+
+// Avatar Modal Selections End
+
+// Delete Modal Selections - Close button, form element, cancel button
+const deleteModal = document.querySelector("#delete-modal");
+
+const deleteModalCloseBtn = deleteModal.querySelector(
+  ".modal__close-button_delete"
+);
+
+const deleteModalForm = deleteModal.querySelector(".modal__form");
+
+const deleteModalCancel = deleteModal.querySelector(".modal__cancel-button");
+
+// Delete Modal Selections End
+
+// All Post Modal Selections - close button, open button, form element
+
+// All New (Image) Post Modal Selections - close button, open button, form element
+const postModal = document.getElementById("new-post-modal");
+const newPostButton = document.querySelector("button.profile__new-post-button");
+const postModalCloseButton = postModal.querySelector(".modal__close-button");
 const addCardFormElement = postModal.querySelector(".modal__form");
 
+// ALl Post modal selections end
+
+// Card Template Selections
 const cardTemplate = document.querySelector("#card-template").content;
 
 const cardSection = document.querySelector(".cards__container");
+
+// Card Template Selections End
+
+// All Preview Modal Selections
 
 const imageModal = document.querySelector(".preview-modal");
 const imageModalCloseButton = imageModal.querySelector(
@@ -81,7 +119,39 @@ const imageModalCloseButton = imageModal.querySelector(
 const modalImage = imageModal.querySelector(".preview-modal__image");
 const modalCaption = imageModal.querySelector(".preview-modal__caption");
 
+// All Preview Modal Selections End
+
 const allModals = [...formModalContainers, imageModal];
+
+const modalToCloseButton = {
+  avatar: {
+    button: avatarModalCloseBtn,
+    modal: avatarModal,
+  },
+  delete: {
+    button: deleteModalCloseBtn,
+    modal: deleteModal,
+  },
+  image: {
+    button: imageModalCloseButton,
+    modal: imageModal,
+  },
+  post: {
+    button: postModalCloseButton,
+    modal: postModal,
+  },
+  profile: {
+    button: profileModalCloseButton,
+    modal: profileModal,
+  },
+};
+
+// Api Instantiation
+
+// Global selection variables
+
+let selectedId;
+let selectedCard;
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -90,6 +160,18 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
+function closeModal(modalElem, className = "modal_is-opened") {
+  modalElem.classList.remove(className);
+
+  document.removeEventListener("keydown", handleEscapeKey);
+}
+
+function openModal(modalElem, className = "modal_is-opened") {
+  modalElem.classList.add(className);
+
+  document.addEventListener("keydown", handleEscapeKey);
+}
 
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
@@ -111,6 +193,34 @@ function setModalCloseEventListeners(modals) {
       ) {
         closeModal(modal);
       }
+    });
+  });
+}
+
+function preloadForm(nameinput, jobinput, currentNameElem, currentJobElem) {
+  nameinput.value = currentNameElem.textContent;
+  jobinput.value = currentJobElem.textContent;
+
+  console.log(`Name Input preloaded with ${currentNameElem.textContent}\n  
+    Job Input preloaded with ${currentJobElem.textContent}
+    `);
+}
+
+function setProfileTextContent(
+  nameInputVal,
+  jobInputVal,
+  profileNameElem,
+  jobDescriptElem
+) {
+  profileNameElem.textContent = nameInputVal;
+
+  jobDescriptElem.textContent = jobInputVal;
+}
+
+function setCloseIconEventListeners(modalToCloseMap) {
+  Object.values(modalToCloseMap).forEach(({ button, modal }) => {
+    button.addEventListener("click", function (_) {
+      closeModal(modal);
     });
   });
 }
@@ -145,26 +255,6 @@ function handleAvatarUpdate(e) {
     });
 }
 
-avatarModalForm.addEventListener("submit", handleAvatarUpdate);
-
-setModalCloseEventListeners(allModals);
-
-let selectedId;
-let selectedCard;
-
-function handleDeleteCard(idSelected, cardSelected) {
-  deleteModal.classList.add("modal_is-opened");
-
-  selectedCard = cardSelected;
-  selectedId = idSelected;
-}
-
-function handleCancel() {
-  selectedId = null;
-  selectedCard = null;
-  deleteModal.classList.remove("modal_is-opened");
-}
-
 function getCardElement(card) {
   console.log(card, "\n\n");
   const cardElement = cardTemplate
@@ -190,6 +280,7 @@ function getCardElement(card) {
 
   likeBtn.addEventListener("click", function (e) {
     if (likeBtn.dataset.busy === "1") return;
+    // Trying to account for double clicking the like button.
 
     likeBtn.dataset.busy = "1";
 
@@ -228,100 +319,18 @@ function getCardElement(card) {
   return cardElement;
 }
 
-function handleDeleteSubmit(e) {
-  e.preventDefault();
+function handleDeleteCard(idSelected, cardSelected) {
+  openModal(deleteModal);
 
-  if (selectedId === null) return;
-
-  console.log("SELECTED CARD IN HANDLE DELETE SUBMIT", selectedCard);
-
-  const thisForm = e.currentTarget;
-
-  const thisButton = thisForm.querySelector('button[type="submit"]');
-
-  const thisLoading = handleLoading.bind(
-    null,
-    thisButton,
-    "Delete",
-    "Deleting..."
-  );
-
-  thisLoading(true);
-
-  api
-    .deleteCard(selectedId)
-    .then((res) => {
-      deleteModal.classList.remove("modal_is-opened");
-
-      selectedCard.remove();
-
-      selectedId = null;
-      selectedCard = null;
-    })
-    .catch((err) => console.error(err))
-    .finally(() => {
-      thisLoading(false);
-    });
+  selectedCard = cardSelected;
+  selectedId = idSelected;
 }
 
-deleteModalForm.addEventListener("submit", handleDeleteSubmit);
-
-deleteModalCancel.addEventListener("click", handleCancel);
-
-function closeModal(modalElem, className = "modal_is-opened") {
-  modalElem.classList.remove(className);
-
-  document.removeEventListener("keydown", handleEscapeKey);
+function handleCancel() {
+  selectedId = null;
+  selectedCard = null;
+  closeModal(deleteModal);
 }
-
-function openModal(modalElem, className = "modal_is-opened") {
-  modalElem.classList.add(className);
-
-  document.addEventListener("keydown", handleEscapeKey);
-}
-
-function preloadForm(nameinput, jobinput, currentNameElem, currentJobElem) {
-  nameinput.value = currentNameElem.textContent;
-  jobinput.value = currentJobElem.textContent;
-
-  console.log(`Name Input preloaded with ${currentNameElem.textContent}\n  
-    Job Input preloaded with ${currentJobElem.textContent}
-    `);
-}
-
-function setProfileTextContent(
-  nameInputVal,
-  jobInputVal,
-  profileNameElem,
-  jobDescriptElem
-) {
-  profileNameElem.textContent = nameInputVal;
-
-  jobDescriptElem.textContent = jobInputVal;
-}
-
-imageModalCloseButton.addEventListener("click", function (e) {
-  closeModal(imageModal);
-});
-
-editProfileButton.addEventListener("click", function (e) {
-  openModal(profileModal);
-  preloadForm(nameInput, jobInput, profileNameElement, profileJobElement);
-
-  clearValidation(profileFormElement, settings);
-});
-
-profileModalCloseButton.addEventListener("click", function (e) {
-  closeModal(profileModal);
-});
-
-newPostButton.addEventListener("click", function (e) {
-  openModal(postModal);
-});
-
-postModalCloseButton.addEventListener("click", function (e) {
-  closeModal(postModal);
-});
 
 function handleLoading(buttonEl, defaultText, loadingText, isLoading) {
   if (!buttonEl) return;
@@ -421,40 +430,41 @@ function handleAddCardSubmit(evt) {
     });
 }
 
-profileFormElement.addEventListener("submit", handleFormSubmit);
+function handleDeleteSubmit(e) {
+  e.preventDefault();
 
-addCardFormElement.addEventListener("submit", handleAddCardSubmit);
+  if (selectedId === null) return;
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Landscape view",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
+  console.log("SELECTED CARD IN HANDLE DELETE SUBMIT", selectedCard);
+
+  const thisForm = e.currentTarget;
+
+  const thisButton = thisForm.querySelector('button[type="submit"]');
+
+  const thisLoading = handleLoading.bind(
+    null,
+    thisButton,
+    "Delete",
+    "Deleting..."
+  );
+
+  thisLoading(true);
+
+  api
+    .deleteCard(selectedId)
+    .then((res) => {
+      deleteModal.classList.remove("modal_is-opened");
+
+      selectedCard.remove();
+
+      selectedId = null;
+      selectedCard = null;
+    })
+    .catch((err) => console.error(err))
+    .finally(() => {
+      thisLoading(false);
+    });
+}
 
 function renderCards(cards) {
   cardSection.innerHTML = "";
@@ -464,8 +474,36 @@ function renderCards(cards) {
   });
 }
 
+setModalCloseEventListeners(allModals);
+
+setCloseIconEventListeners(modalToCloseButton);
+
+avatarEditButton.addEventListener("click", function (_) {
+  openModal(avatarModal);
+});
+
+editProfileButton.addEventListener("click", function (e) {
+  openModal(profileModal);
+  preloadForm(nameInput, jobInput, profileNameElement, profileJobElement);
+
+  clearValidation(profileFormElement, settings);
+});
+
+newPostButton.addEventListener("click", function (e) {
+  openModal(postModal);
+});
+
+deleteModalCancel.addEventListener("click", handleCancel);
+
+avatarModalForm.addEventListener("submit", handleAvatarUpdate);
+
+deleteModalForm.addEventListener("submit", handleDeleteSubmit);
+
+profileFormElement.addEventListener("submit", handleFormSubmit);
+
+addCardFormElement.addEventListener("submit", handleAddCardSubmit);
+
 function initiateApp() {
-  // First, get user info to set up the profile
   api
     .getUserInfo()
     .then(({ name, about, avatar, _id }) => {
@@ -490,7 +528,7 @@ function initiateApp() {
     })
     .then((result) => {
       console.log("App initialization completed successfully");
-      // If initial cards were created, we might want to refresh the card display
+
       if (Array.isArray(result) && result.length > 0) {
         const hasNewCards = result.some((card) => card._id);
         if (hasNewCards) {
