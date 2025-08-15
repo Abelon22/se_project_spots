@@ -94,6 +94,4 @@ function disableButton(formElement, config) {
   buttonElement.disabled = true;
 }
 
-enableValidation(settings);
-
 export { settings, clearValidation, enableValidation, disableButton };

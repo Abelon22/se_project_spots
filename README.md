@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Spots is a responsive web project designed to help users discover, save, and share their favorite places. The application features a clean, modern interface for browsing locations, editing user profiles, and creating new posts. The layout adapts seamlessly to different screen sizes, ensuring a great experience on both desktop and mobile devices.
+Spots is an amazing responsive web project designed to help users discover, save, and share their favorite places. The application features a clean, modern interface for browsing locations, editing user profiles, and creating new posts. The layout adapts seamlessly to different screen sizes, ensuring a great experience on both desktop and mobile devices.
 
 ## Features
 
