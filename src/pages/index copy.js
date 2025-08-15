@@ -8,6 +8,10 @@ import Api from "../../utils/Api.js";
 
 import styles from "./index.css";
 
+// api instantiation
+
+// all form modals
+
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
 const profileModal = document.getElementById("edit-profile-modal");
@@ -70,6 +74,10 @@ const profileJobElement = document.querySelector(".profile__title");
 
 const addCardFormElement = postModal.querySelector(".modal__form");
 
+const linkInput = addCardFormElement.querySelector("#profile-image");
+
+const captionInput = addCardFormElement.querySelector("#profile-caption");
+
 const cardTemplate = document.querySelector("#card-template").content;
 
 const cardSection = document.querySelector(".cards__container");
@@ -90,6 +98,8 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
+// enableValidation(settings);
 
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
@@ -118,31 +128,17 @@ function setModalCloseEventListeners(modals) {
 function handleAvatarUpdate(e) {
   e.preventDefault();
 
-  const thisForm = e.currentTarget;
-
-  const thisButton = thisForm.querySelector("button[type='submit']");
-
-  const formData = new FormData(thisForm);
-
-  const profileLink = (formData.get("profile-picture") || "").trim();
-
-  const thisLoading = handleLoading.bind(null, thisButton, "Save", "Saving...");
+  const profileLink = e.target.elements["profile-picture"].value;
 
   console.log(profileLink);
-
-  thisLoading(true);
 
   api
     .updateUserAvatar(profileLink)
     .then((res) => {
       profileImage.src = res.avatar;
-      thisForm.reset();
       closeModal(avatarModal);
     })
-    .catch((err) => console.error(err))
-    .finally(() => {
-      thisLoading(false);
-    });
+    .catch((err) => console.error(err));
 }
 
 avatarModalForm.addEventListener("submit", handleAvatarUpdate);
@@ -338,6 +334,9 @@ function handleLoading(buttonEl, defaultText, loadingText, isLoading) {
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
+  // const profileName = nameInput.value;
+  // const jobDescription = jobInput.value;
+
   const thisForm = evt.currentTarget;
 
   const formData = new FormData(thisForm);
@@ -464,55 +463,28 @@ function renderCards(cards) {
   });
 }
 
-function initiateApp() {
-  // First, get user info to set up the profile
-  api
-    .getUserInfo()
-    .then(({ name, about, avatar, _id }) => {
-      profileImage.src = avatar;
-      profileJobElement.textContent = about;
-      profileNameElement.textContent = name;
-      console.log("User info loaded successfully");
+api
+  .createInitialCards(initialCards)
+  .then((cards) => {
+    console.log(cards);
+  })
+  .catch((err) => console.error(err));
 
-      return api.getCards();
-    })
-    .then((cards) => {
-      console.log("Cards loaded:", cards);
-      renderCards(cards);
+api
+  .getCards()
+  .then((cards) => {
+    console.log(cards);
+    renderCards(cards);
+  })
+  .catch((err) => console.error(err));
 
-      if (cards.length === 0) {
-        console.log("No existing cards found, creating initial cards");
-        return api.createInitialCards(initialCards);
-      } else {
-        console.log("Existing cards found, skipping initial card creation");
-        return Promise.resolve(cards);
-      }
-    })
-    .then((result) => {
-      console.log("App initialization completed successfully");
-      // If initial cards were created, we might want to refresh the card display
-      if (Array.isArray(result) && result.length > 0) {
-        const hasNewCards = result.some((card) => card._id);
-        if (hasNewCards) {
-          console.log("Initial cards created, refreshing display");
-          return api.getCards().then(renderCards);
-        }
-      }
-      return Promise.resolve();
-    })
-    .catch((err) => {
-      console.error("Error during app initialization:", err);
-
-      if (err.message && err.message.includes("getUserInfo")) {
-        console.error("Failed to load user info");
-      } else if (err.message && err.message.includes("getCards")) {
-        console.error("Failed to load cards");
-      } else {
-        console.error("General app initialization error");
-      }
-    });
-}
-
-initiateApp();
+api
+  .getUserInfo()
+  .then(({ name, about, avatar, _id }) => {
+    profileImage.src = avatar;
+    profileJobElement.textContent = about;
+    profileNameElement.textContent = name;
+  })
+  .catch((err) => console.error(err));
 
 enableValidation(settings);
