@@ -480,6 +480,7 @@ setCloseIconEventListeners(modalToCloseButton);
 
 avatarEditButton.addEventListener("click", function (_) {
   openModal(avatarModal);
+  clearValidation(avatarModalForm, settings);
 });
 
 editProfileButton.addEventListener("click", function (e) {
