@@ -41,8 +41,6 @@ const initialCards = [
 
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
-// ALl Profile Modal Selections - close button , open button, form element
-
 const profileModal = document.getElementById("edit-profile-modal");
 
 const profileModalCloseButton = profileModal.querySelector(
@@ -61,12 +59,6 @@ const profileNameElement = document.querySelector(".profile__name");
 
 const profileJobElement = document.querySelector(".profile__title");
 
-// these are for preloading the form
-
-// All Profile Modal Selections End
-
-// Avatar Modal Selections - close button , open button, form element
-
 const avatarModal = document.getElementById("edit-avatar-modal");
 
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-button");
@@ -78,9 +70,6 @@ const avatarEditButton = document.querySelector(
 );
 const profileImage = document.querySelector(".profile__avatar-image");
 
-// Avatar Modal Selections End
-
-// Delete Modal Selections - Close button, form element, cancel button
 const deleteModal = document.querySelector("#delete-modal");
 
 const deleteModalCloseBtn = deleteModal.querySelector(
@@ -91,26 +80,14 @@ const deleteModalForm = deleteModal.querySelector(".modal__form");
 
 const deleteModalCancel = deleteModal.querySelector(".modal__cancel-button");
 
-// Delete Modal Selections End
-
-// All Post Modal Selections - close button, open button, form element
-
-// All New (Image) Post Modal Selections - close button, open button, form element
 const postModal = document.getElementById("new-post-modal");
 const newPostButton = document.querySelector("button.profile__new-post-button");
 const postModalCloseButton = postModal.querySelector(".modal__close-button");
 const addCardFormElement = postModal.querySelector(".modal__form");
 
-// ALl Post modal selections end
-
-// Card Template Selections
 const cardTemplate = document.querySelector("#card-template").content;
 
 const cardSection = document.querySelector(".cards__container");
-
-// Card Template Selections End
-
-// All Preview Modal Selections
 
 const imageModal = document.querySelector(".preview-modal");
 const imageModalCloseButton = imageModal.querySelector(
@@ -118,8 +95,6 @@ const imageModalCloseButton = imageModal.querySelector(
 );
 const modalImage = imageModal.querySelector(".preview-modal__image");
 const modalCaption = imageModal.querySelector(".preview-modal__caption");
-
-// All Preview Modal Selections End
 
 const allModals = [...formModalContainers, imageModal];
 
