@@ -8,37 +8,6 @@ import Api from "../../utils/Api.js";
 
 import styles from "./index.css";
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Landscape view",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
-
 const formModalContainers = Array.from(document.querySelectorAll(".modal"));
 
 const profileModal = document.getElementById("edit-profile-modal");
@@ -240,6 +209,9 @@ function getCardElement(card) {
   const cardImage = cardElement.querySelector(".cards__image");
 
   const likeBtn = cardElement.querySelector(".cards__heart");
+  if (card.isLiked) {
+    likeBtn.classList.add("cards__heart_liked");
+  }
   const deleteBtn = cardElement.querySelector(".cards__delete");
 
   cardTitle.textContent = card.name;
@@ -493,26 +465,6 @@ function initiateApp() {
     .then((cards) => {
       console.log("Cards loaded:", cards);
       renderCards(cards);
-
-      if (cards.length === 0) {
-        console.log("No existing cards found, creating initial cards");
-        return api.createInitialCards(initialCards);
-      } else {
-        console.log("Existing cards found, skipping initial card creation");
-        return Promise.resolve(cards);
-      }
-    })
-    .then((result) => {
-      console.log("App initialization completed successfully");
-
-      if (Array.isArray(result) && result.length > 0) {
-        const hasNewCards = result.some((card) => card._id);
-        if (hasNewCards) {
-          console.log("Initial cards created, refreshing display");
-          return api.getCards().then(renderCards);
-        }
-      }
-      return Promise.resolve();
     })
     .catch((err) => {
       console.error("Error during app initialization:", err);
