@@ -45,6 +45,10 @@ function toggleButtonState(inputList, buttonElement, config) {
     return !inputElement.validity.valid;
   });
 
+  if (!buttonElement) {
+    return;
+  }
+
   if (hasInvalidInput) {
     buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -60,11 +64,21 @@ function setEventListeners(formElement, config) {
     formElement.querySelectorAll(config.inputSelector)
   );
 
+  if (!buttonElem) {
+    return;
+  }
+
   toggleButtonState(inputList, buttonElem, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
-      checkInputValidity(evt.currentTarget, config);
+      const el = evt.currentTarget;
+
+      if (el.type === "url") {
+        el.value = el.value.trim();
+      }
+
+      checkInputValidity(el, config);
       toggleButtonState(inputList, buttonElem, config);
     });
   });
@@ -85,15 +99,16 @@ function clearValidation(formElement, config) {
     errorSpan.textContent = "";
   });
 
-  toggleButtonState(inputList, buttonElement, config);
+  if (buttonElement) {
+    toggleButtonState(inputList, buttonElement, config);
+  }
 }
 
 function disableButton(formElement, config) {
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  if (!buttonElement) return;
   buttonElement.classList.add(config.inactiveButtonClass);
   buttonElement.disabled = true;
 }
-
-enableValidation(settings);
 
 export { settings, clearValidation, enableValidation, disableButton };
